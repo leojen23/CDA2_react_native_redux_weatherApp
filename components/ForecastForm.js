@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, Button } from 'react-native';
+import React from 'react';
+import { 
+    View, 
+    Image, 
+    StyleSheet, 
+    TextInput} from 'react-native';
 
-class ForecastForm extends Component {
-    render() {
+const ForecastForm = ({inputValue, onChangeText, onSubmitEditing}) => {
+   
         return (
             <View>
                 <View style={styles.inputView}>
@@ -11,17 +15,18 @@ class ForecastForm extends Component {
                         style={styles.ImageStyle}
                     />
                     <TextInput 
-                        onChangeText={this.props.onChangeText}
-                        onSubmitEditing={this.props.onSubmitEditing}
+                        onChangeText={onChangeText}
+                        onSubmitEditing={onSubmitEditing}
                         style={{ fontFamily: 'Montserrat', fontSize: 20 }}
                         placeholder="Rechercher une ville"
                         underlineColorAndroid="transparent"
-                        value={this.props.value}
+                        value={inputValue}
                     />
                 </View>
             </View>
-        )}
-}
+        )
+    }
+
 
 const styles = StyleSheet.create({
     inputView: {

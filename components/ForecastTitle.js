@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import ForecastChosenCity from './ForecastChosenCity';
 import moment from "moment"; 
 import 'moment/locale/fr'
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Dimensions 
+} from 'react-native';
 
-const ForecastTitle = ({title, date}) => 
+const ForecastTitle = ({city, date}) => 
          (
-            <View style={[styles.container, {
-                /* flexDirection: "column", */
-              }]}>
-                <ForecastChosenCity title = {title}/>
+            <View style={styles.container}>
+                <ForecastChosenCity city = {city}/>
                 <Text style={styles.date}>{moment(date).format('ddd Do MMM')}</Text> 
             </View>
         )
 
-const styles = StyleSheet.create({
-    container: {
-        alignItems:'center',
-        justifyContent:'center',
-        flex: 1,
 
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height        
+
+const styles = StyleSheet.create({
+    container:{
+       width: screenWidth * 0.9,
+       justifyContent:'center',
+       alignItems:'center'
         /* position: 'absolute' */
     },
    
@@ -29,6 +35,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Montserrat'
     }
-  });
+});
 
 export default ForecastTitle;

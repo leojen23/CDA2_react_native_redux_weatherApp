@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import { 
+    View, 
+    Text, 
+    StyleSheet 
+} from 'react-native';
 
-class ForecastChosenCity extends Component {
-    render() {
-        return (
-            <View>
-                <Text style={styles.nameCity}>{this.props.title}</Text>
-            </View>
-        )
-    }
-}
+
+const ForecastChosenCity = ({city}) => 
+    (
+        <View>
+            <Text style={styles.city}>{city}</Text>
+        </View>
+    )
+
 
 const styles = StyleSheet.create({
-    nameCity: {
-        color: 'white',
+    city: {
+        color: '#FFFFFF',
         fontWeight: 'bold',
-        fontSize: 50,
+        fontSize: 62,
         fontFamily: 'Montserrat'
     },
 })

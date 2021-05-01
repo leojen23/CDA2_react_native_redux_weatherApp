@@ -2,6 +2,7 @@ let initialState = {
     forecast: {},
     loader: false,
     inputValue : '',
+    errorMsg:null
   }
 
 const forecastReducer = (state = initialState, action) => {
@@ -12,16 +13,11 @@ const forecastReducer = (state = initialState, action) => {
             forecast: action.forecast,
             inputValue : '',
           };
-      case 'UPDATE_LOADER':
+      case 'TOGGLE_LOADER':
           return {
             ...state,
             loader: action.status
           };
- /*      case 'CLEAR_INPUT':
-      return {
-        ...state,
-        inputValue: action.inputValue
-      }; */
       case 'UPDATE_INPUT':
         return {
           ...state,

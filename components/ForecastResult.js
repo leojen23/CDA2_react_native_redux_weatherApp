@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { 
+    View, 
+    Text, Image, 
+    StyleSheet } from 'react-native';
+
+
 
 class ForecastTitle extends Component {
     render() {
@@ -18,10 +23,10 @@ class ForecastTitle extends Component {
                 }]}>
                         <Image 
                             style={{width: 100, height: 100, borderRadius: 10, marginLeft: 30}} 
-                            source={{uri: this.props.weather_icon}}
+                            source={{uri: this.props.weatherIcon}}
                         />
                         <Text style={styles.weatherDescriptions}>
-                            {this.props.weather_descriptions}  
+                            {this.props.weatherDescription}  
                         </Text>
                     </View>
                     <View>
@@ -70,7 +75,7 @@ class ForecastTitle extends Component {
                         paddingLeft: 10, 
                     }}>
                             <Image  style={{width: 40, height: 30}}  source= {require('../assets/images/wind_icon.png')} />
-                            <Text style={{fontFamily: 'Montserrat', paddingLeft: 5, color:'white', fontSize: 20}}>{this.props.wind_speed}km/h</Text>
+                            <Text style={{fontFamily: 'Montserrat', paddingLeft: 5, color:'white', fontSize: 20}}>{this.props.windSpeed}km/h</Text>
                         </View>
                         <View style={{
                         flexDirection: "row",
