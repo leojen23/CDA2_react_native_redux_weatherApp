@@ -3,23 +3,20 @@ export const updateForecast = (forecast) => ({
       forecast: forecast,
   });
   
-export const toggleLoader = (status) => ({
-    type: 'UPDATE_LOADER',
-    status: status
-});
-
-export const clearInput = () => ({
-    type: 'CLEAR_INPUT',
-    inputValue: ''
-});
-
 export const updateInput = (inputValue) => ({
     type: 'UPDATE_INPUT',
     inputValue: inputValue
 })
+    
+export const toggleLoader = (status) => ({
+    type: 'TOGGLE_LOADER',
+    status: status
+});
+
 
 export const fetchLocation = () => {
     return async dispatch => {
+        dispatch(toggleLoader(true));
         const response = await fetch ('https://api.bigdatacloud.net/data/reverse-geocode-client?city&localityLanguage=fr');
         const location = await response.json();
         dispatch(fetchForecast(location.locality));
@@ -33,7 +30,6 @@ export const fetchForecast = (city) => {
         const forecast = await response.json();
         dispatch(toggleLoader(false));
         dispatch(updateForecast(forecast));
-        dispatch(clearInput());
     }
 };
 
