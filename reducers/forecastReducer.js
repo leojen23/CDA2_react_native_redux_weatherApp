@@ -11,7 +11,7 @@ const forecastReducer = (state = initialState, action) => {
           return {
             ...state,
             forecast: action.forecast,
-            inputValue : '',
+            // inputValue : '',
           };
       case 'TOGGLE_LOADER':
           return {
@@ -22,6 +22,17 @@ const forecastReducer = (state = initialState, action) => {
         return {
           ...state,
           inputValue: action.inputValue
+        };
+      case 'SET_ERROR_MSG':
+        return {
+          ...state,
+          errorMsg: action.errorMsg
+        }
+      case 'CLEAR_INPUT':
+        return {
+          ...state,
+          inputValue: action.inputValue,
+          //inputValue: null
         };
       default :
           return state;
