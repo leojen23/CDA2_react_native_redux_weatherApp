@@ -1,133 +1,169 @@
-import React, { Component } from 'react';
+import React from 'react'
 import { 
+    StyleSheet, 
     View, 
-    Text, Image, 
-    StyleSheet } from 'react-native';
+    Text, 
+    Image,
+    Dimensions
+    } from 'react-native'
 
-
-
-class ForecastTitle extends Component {
-    render() {
+    const ForecastResult = (props) => {
+       
         return (
-            <View >
-                <View style={[styles.container, {
-                    /* flexDirection: "column", */
-                    /* flex: 1, */
-                    flexWrap: 'wrap',
-                    alignItems: 'center',
+            //(props.errorMsg != null) ?
+            //<View><Text>{props.errorMsg}</Text></View> :
+            <View style={styles.container}>
+
+                <View style={styles.weatherContainer}>
+                    <Image 
+                        source={{uri: props.weatherIcon}}
+                        style={styles.weatherIcon}
+                    />
+                    <Text style={styles.description}>{props.weatherDescription}</Text>
+                </View>
+    
+    
+                <View style={styles.tempContainer}>
+                    <Text style={styles.temp}>{props.temperature}°C</Text>
+                    <View style={styles.minMaxContainer}>
+                        <Text style={styles.minMaxTemp}>min {props.minTemp}°C</Text>
+                        <View style={styles.divider}></View>
+
+                        <Text style={styles.minMaxTemp}>max {props.maxTemp}°C</Text>
+                    </View>
+                </View>
+
+                <View style={styles.infosContainer}>
+
+                    <View  style={styles.infoItemContainer}>
+                        <Image  style={styles.icon} source= {require('../assets/images/wind_icon.png')}/>
+                        <Text  style={styles.infoText}>{props.windSpeed} km/h</Text> 
+                    </View>
+
+                    <View style={styles.infoItemContainer}>
+                        <Image style={styles.icon} source= {require('../assets/images/water_icon.png')}/>
+                        <Text style={styles.infoText}>{props.humidity} %</Text>
+                    </View>
                     
-                }]}>
-                    <View style={[styles.container, {
-                    flexDirection: "row",
-                    alignItems: 'center'
-                }]}>
-                        <Image 
-                            style={{width: 100, height: 100, borderRadius: 10, marginLeft: 30}} 
-                            source={{uri: this.props.weatherIcon}}
-                        />
-                        <Text style={styles.weatherDescriptions}>
-                            {this.props.weatherDescription}  
-                        </Text>
-                    </View>
-                    <View>
-                        <View style={[styles.container, {
-                    /* flexDirection: "column",
-                    alignItems: 'center' */
-                }]}>
-                            <View style={[styles.containerTemp, {
-                    flexDirection: "row",
-                   /*  alignItems: 'flex-start' */
-                }]}>
-                                <Text style={styles.temperature}>
-                                    {this.props.temperature}°C
-                                </Text>
-                                <View style={styles.minMax}>
-                                    <Text style={{color: 'dimgray', fontFamily: 'Montserrat', fontSize: 20}}>
-                                        min {this.props.temperature + 4}°C
-                                    </Text>
-                                    <View
-                                    style={{
-                                        borderBottomColor: 'dimgray',
-                                        borderBottomWidth: 4,
-                                    }}
-                                    />
-                                    <Text style={{color: 'dimgray', fontFamily: 'Montserrat',  fontSize: 20}}>
-                                        max {this.props.temperature - 4}°C
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>  
-                    </View>
                 </View>
-                <View style={[styles.windAndHumidity, {
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignSelf: 'center',
-                   /*  flex: 1 */
-                }]}>
-                    <View style={ {
-                    flexDirection: "row",
-                   /*  alignSelf: 'center', */
-                }}>
-                        <View style={{
-                        flexDirection: "row",
-                        alignSelf: 'center',
-                        paddingLeft: 10, 
-                    }}>
-                            <Image  style={{width: 40, height: 30}}  source= {require('../assets/images/wind_icon.png')} />
-                            <Text style={{fontFamily: 'Montserrat', paddingLeft: 5, color:'white', fontSize: 20}}>{this.props.windSpeed}km/h</Text>
-                        </View>
-                        <View style={{
-                        flexDirection: "row",
-                        alignSelf: 'center',
-                        paddingLeft: 30
-                    }}>
-                            <Image  style={{width: 30, height: 30}}  source= {require('../assets/images/water_icon.png')} />
-                            <Text style={{fontFamily: 'Montserrat', color:'white', fontSize: 20}}>{this.props.humidity}%</Text>
-                        </View>
-                    </View>
-                </View>
-            </View>
+            </View> 
             
         )
     }
-}
-const styles = StyleSheet.create({
-    container: {
-       backgroundColor: 'white',
-       marginTop: 90,
-       borderRadius: 10,
-       margin: 15,
-    },
-    weatherDescriptions: {
-        color: 'darkslateblue',
-        fontWeight: 'bold',
-        fontSize: 30,
-        marginLeft: 20,
-        fontFamily: 'Montserrat',
-        
-    },
-    temperature: {
-        color: 'darkslateblue',
-        fontWeight: 'bold',
-        fontSize: 55,
-        margin: 20,
-        fontFamily: 'Montserrat'
-    },
-    minMax: {
-        justifyContent: 'center',
-    },
-    windAndHumidity: {
-        backgroundColor: 'darkslateblue',
-        color: 'white',
-        width: '80%',
-        height: 50,
-        borderRadius: 10,
-        position: 'absolute',
-        bottom: -25,
-        alignSelf: 'center',
-        fontFamily: 'Montserrat'
-    }
-  });
+    
 
-export default ForecastTitle;
+    
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height     
+    const styles = StyleSheet.create({
+        container: {
+            flex:4,
+            flexDirection:'column',
+            alignItems:'center',
+            marginTop:80,
+            backgroundColor: '#FFFFFF',
+            opacity:0.9,
+            borderRadius:12, 
+            width: screenWidth * 0.9,
+        },
+        loaderContainer:{
+            flexDirection:'row',
+            alignContent:'center',
+            justifyContent:'center',
+            position: 'relative',
+            marginTop:80,
+            backgroundColor: '#FFFFFF',
+            opacity:0.9,
+            borderRadius:12,
+            height:200
+        },
+
+
+        weatherContainer:{
+            flex:1,
+            flexDirection:'row',
+            justifyContent:'space-around',
+            alignItems:'center',
+            alignContent:'center',
+            width: screenWidth *0.9,
+            flexWrap:'wrap',
+            borderRadius:12
+        },
+        weatherIcon: {
+            width: 100, 
+            height: 100,
+            borderRadius:12
+        },
+        description: {
+            fontFamily:'Montserrat',
+            fontSize:27,
+            fontWeight:'bold',
+            color:'#404491',
+        },
+
+
+        tempContainer:{
+            flex:1,
+            flexDirection:'row',
+            justifyContent:'space-around',
+            alignItems:'center',
+            alignContent:'center',
+            width: screenWidth *0.9,
+        },
+        temp: {
+            fontFamily:'Montserrat',
+            fontSize:74,
+            fontWeight:'bold',
+            color:'#404491',
+        },
+        minMaxContainer:{
+            justifyContent:'center',
+        },
+        divider:{
+            borderBottomColor: '#707070',
+            paddingVertical:1,
+            borderBottomWidth: 3,
+        },
+        minMaxTemp:{
+            color:'#707070',
+            fontFamily:'Montserrat',
+            fontWeight: 'bold',
+            fontSize:20,
+        },
+
+
+
+
+        infosContainer:{
+            flex:0.5,
+            flexDirection:'row',
+            justifyContent:'space-around',
+            alignItems:'center',
+            alignContent:'center',
+            backgroundColor:'#404491',
+            borderRadius:12,
+            width:screenWidth * 0.8,
+            marginBottom:-30
+        },
+        infoItemContainer:{
+            flex:1,
+            flexDirection:'row',
+            justifyContent:'center',
+            alignItems:'center'
+        },
+        icon: {
+            margin: 10,
+            height: 35,
+            width: 40,
+            resizeMode: 'stretch',
+            alignItems: 'center',
+        },
+        infoText:{
+            fontSize:22,
+            color:'#FFFFFF',
+            fontFamily:"Montserrat",
+            fontWeight:'bold'
+        }
+      });
+      
+export default ForecastResult;

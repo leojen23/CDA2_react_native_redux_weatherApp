@@ -6,7 +6,8 @@ import ForecastTitle from './ForecastTitle';
 import ForecastResult from './ForecastResult';
 import ForecastForm from './ForecastForm';
 import {
-    StyleSheet, 
+    StyleSheet,
+    SafeAreaView , 
     Text, 
     View, 
     ActivityIndicator,
@@ -20,7 +21,7 @@ class Forecast extends Component {
         return (
                (this.props.forecast.location) ?
                
-                <View style={styles.container}>
+                <SafeAreaView  style={styles.container}>
                     {this.props.loader ? 
         
                     <View   >
@@ -48,9 +49,9 @@ class Forecast extends Component {
                             onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
                             inputValue={this.props.inputValue} />  
                     </View>}
-                </View> 
+                </SafeAreaView > 
                 :
-                <View>
+                <SafeAreaView >
                     <Text>Aucune ville trouvée, réessayer : </Text>
                     {!this.props.loader ? 
                         <ForecastForm 
@@ -58,7 +59,7 @@ class Forecast extends Component {
                             onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
                             inputValue={this.props.inputValue} />  
                         : <Text>It is loading</Text>}
-                </View>             
+                </SafeAreaView >             
         )      
     }
 }
@@ -68,16 +69,10 @@ const styles = StyleSheet.create({
     container: {
        flex:1,
        justifyContent:'center',
-       alignItems:'center'
+       alignItems:'center',
+       paddingBottom:40,
+       paddingTop:40,
     },
-    ImageStyle: {
-        padding: 10,
-        margin: 5,
-        height: 50,
-        width: 50,
-        resizeMode: 'stretch',
-        alignItems: 'center',
-    }
   });
 
 const mapStateToProps = (state) => ({

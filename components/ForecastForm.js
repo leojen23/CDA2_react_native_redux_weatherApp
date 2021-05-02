@@ -3,46 +3,45 @@ import {
     View, 
     Image, 
     StyleSheet, 
-    TextInput} from 'react-native';
+    TextInput,
+    Dimensions
+} from 'react-native';
 
 const ForecastForm = ({inputValue, onChangeText, onSubmitEditing}) => {
    
         return (
-            <View>
-                <View style={styles.inputView}>
-                    <Image
-                        source={require('../assets/images/search_icon.png')} 
-                        style={styles.ImageStyle}
-                    />
-                    <TextInput 
-                        onChangeText={onChangeText}
-                        onSubmitEditing={onSubmitEditing}
-                        style={{ fontFamily: 'Montserrat', fontSize: 20 }}
-                        placeholder="Rechercher une ville"
-                        underlineColorAndroid="transparent"
-                        value={inputValue}
-                    />
-                </View>
+            <View style={styles.container}>
+                <Image
+                    source={require('../assets/images/search_icon.png')} 
+                    style={styles.icon}
+                />
+                <TextInput 
+                    onChangeText={onChangeText}
+                    onSubmitEditing={onSubmitEditing}
+                    style={{ fontFamily: 'Montserrat', fontSize: 20 }}
+                    placeholder="Rechercher une ville"
+                    underlineColorAndroid="transparent"
+                    value={inputValue}
+                />
             </View>
         )
     }
 
-
+const screenWidth = Dimensions.get('window').width 
 const styles = StyleSheet.create({
-    inputView: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        borderWidth: 0.5,
-        borderColor: '#000',
-        height: 75,
-        borderRadius: 10,
-        margin: 20,
+    container:{
+        flex:1,
+        width:screenWidth * 0.9,
+        backgroundColor:'#FFFFFF',
+        borderRadius:12,
+        flexDirection:'row',
+        justifyContent:'space-evenly',
+        alignItems:'center',
+        height: 200,
         marginTop: 50,
         fontFamily: 'Montserrat'
     },
-    ImageStyle: {
+    icon: {
         padding: 10,
         margin: 5,
         height: 50,
