@@ -13,6 +13,16 @@ export const toggleLoader = (status) => ({
     status: status
 });
 
+export const setErrorMsg = (message) => ({
+    type:'SET_ERROR_MSG',
+    errorMsg: message
+});
+
+export const clearInput = () => ({
+    type: 'CLEAR_INPUT',
+    inputValue: ''
+  });
+
 
 export const fetchLocation = () => {
     return async dispatch => {
@@ -22,15 +32,30 @@ export const fetchLocation = () => {
         dispatch(fetchForecast(location.locality));
     }
 }
-  
 export const fetchForecast = (city) => {
     return async dispatch => {
         dispatch(toggleLoader(true));
+        try{
+        
         const response = await fetch ('http://api.weatherstack.com/current?access_key=46469cff65186cad32f237adaa90e388&query='+ city);
         const forecast = await response.json();
-        dispatch(toggleLoader(false));
-        dispatch(updateForecast(forecast));
+
+            if (forecast.hasOwnProperty('location')){
+                dispatch(setErrorMsg(null));
+                dispatch(updateForecast(forecast));
+            } else {
+                dispatch(setErrorMsg("Nous n'avons pas trouvé la ville souhaitée"));   
+            }
+            
+            dispatch(toggleLoader(false));
+
+        } catch(e) {
+            dispatch(setErrorMsg('Une erreur est survenue. Serveur temporairement indisponible.'));
+            dispatch(toggleLoader(false));
+        }
+    
+    dispatch(clearInput());
+
     }
 };
 
-  

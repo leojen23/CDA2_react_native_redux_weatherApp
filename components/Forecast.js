@@ -19,15 +19,9 @@ class Forecast extends Component {
     }
     render(){
         return (
-               (this.props.forecast.location) ?
-               
+               (!this.props.loader) ?
                 <SafeAreaView  style={styles.container}>
-                    {this.props.loader ? 
-        
-                    <View   >
-                        <ActivityIndicator size="large" color="#0000ff" />
-                    </View>
-                    :
+                    {this.props.forecast.location && this.props.errorMsg === null?
                     <View>
                         <ForecastTitle 
                             city={this.props.forecast.location.name} 
@@ -41,30 +35,45 @@ class Forecast extends Component {
                             maxTemp = {this.props.forecast.current.temperature + 8}
                             windSpeed={this.props.forecast.current.wind_speed}
                             humidity= {this.props.forecast.current.humidity}
-                            // loader= {This.props.loader}
-                            // errorMsg={This.props.errorMsg}
                             />
                         <ForecastForm 
                             onChangeText= {(text) => {this.props.updateInput(text)}}
                             onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
-                            inputValue={this.props.inputValue} />  
-                    </View>}
-                </SafeAreaView > 
-                :
-                <SafeAreaView >
-                    <Text>Aucune ville trouvée, réessayer : </Text>
-                    {!this.props.loader ? 
-                        <ForecastForm 
-                            onChangeText= {(text) => {this.props.updateInput(text)}}
-                            onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
-                            inputValue={this.props.inputValue} />  
-                        : <Text>It is loading</Text>}
-                </SafeAreaView >             
+                            inputValue={this.props.inputValue} 
+                        />  
+                </View> :
+                <View >
+                    <Text style={[styles.errorMsg, styles.boxShadow]}>{this.props.errorMsg}</Text>
+                    <ForecastForm 
+                    style={styles.form}
+                        onChangeText= {(text) => {this.props.updateInput(text)}}
+                        onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
+                        inputValue={this.props.inputValue} 
+                    />
+                </View>}
+            </SafeAreaView > :
+            <View style={styles.loaderContainer} >
+                <ActivityIndicator size="large" color="#404491" />
+            </View>  
+
+                // :
+                // <SafeAreaView style={styles.container}>
+                //     {this.props.errorMsg != null ? 
+                //     <Text style={styles.errorMsg}>{this.props.errorMsg}</Text>
+                //     :
+                //     <Text style={styles.errorMsg}>Veuillez vérifier l'orthographe de la ville</Text>
+                //         }
+                //          <ForecastForm 
+                //         style={styles.form}
+                //             onChangeText= {(text) => {this.props.updateInput(text)}}
+                //             onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
+                //             inputValue={this.props.inputValue} 
+                //         />
+                // </SafeAreaView >             
         )      
     }
 }
 const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height 
 const styles = StyleSheet.create({
     container: {
        flex:1,
@@ -72,13 +81,49 @@ const styles = StyleSheet.create({
        alignItems:'center',
        paddingBottom:40,
        paddingTop:40,
+       
     },
+    loaderContainer: {
+        alignSelf:'center',
+        backgroundColor:'#FFFFFF',
+        justifyContent:'center',
+        alignItems:'center',
+        width:100,
+        height:100,
+        opacity: 0.9,
+        borderRadius:12,
+    },
+    errorMsg:{
+        fontSize:20,
+        fontFamily:'Montserrat',
+        fontWeight:'bold',
+        textAlign:'center',
+        padding:40,
+        borderColor: '#FFFFFF',
+        borderRadius:12,
+        backgroundColor:'#404491',
+        color: '#FFFFFF',
+        width: screenWidth * 0.9,
+        opacity: 0.9,
+        elevation:5
+    },
+    boxShadow:{
+        shadowColor: "#00000029",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 2,
+        shadowRadius: 6,
+        elevation: 2,
+        }
   });
 
 const mapStateToProps = (state) => ({
     forecast: state.forecast,
     inputValue: state.inputValue,
     loader: state.loader,
+    errorMsg: state.errorMsg
     //errorMsg:state.errorMsg  
   })
 

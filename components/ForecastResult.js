@@ -12,7 +12,7 @@ import {
         return (
             //(props.errorMsg != null) ?
             //<View><Text>{props.errorMsg}</Text></View> :
-            <View style={styles.container}>
+            <View style={[styles.container, styles.boxShadow]}>
 
                 <View style={styles.weatherContainer}>
                     <Image 
@@ -33,7 +33,7 @@ import {
                     </View>
                 </View>
 
-                <View style={styles.infosContainer}>
+                <View style={[styles.infosContainer, styles.boxShadow]}>
 
                     <View  style={styles.infoItemContainer}>
                         <Image  style={styles.icon} source= {require('../assets/images/wind_icon.png')}/>
@@ -163,7 +163,18 @@ const screenHeight = Dimensions.get('window').height
             color:'#FFFFFF',
             fontFamily:"Montserrat",
             fontWeight:'bold'
-        }
+        },
+
+        boxShadow:{
+            shadowColor: "#00000029",
+            shadowOffset: {
+                width: 0,
+                height: 3,
+            },
+            shadowOpacity: 2,
+            shadowRadius: 6,
+            elevation: 2,
+            }
       });
       
 export default ForecastResult;

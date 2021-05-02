@@ -10,7 +10,7 @@ import {
 const ForecastForm = ({inputValue, onChangeText, onSubmitEditing}) => {
    
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, styles.boxShadow]}>
                 <Image
                     source={require('../assets/images/search_icon.png')} 
                     style={styles.icon}
@@ -48,7 +48,17 @@ const styles = StyleSheet.create({
         width: 50,
         resizeMode: 'stretch',
         alignItems: 'center',
-    }
+    },
+    boxShadow:{
+        shadowColor: "#00000029",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 2,
+        shadowRadius: 6,
+        elevation: 2,
+        }
   });
 
 export default ForecastForm
