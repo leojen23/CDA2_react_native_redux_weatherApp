@@ -10,8 +10,6 @@ import {
     const ForecastResult = (props) => {
        
         return (
-            //(props.errorMsg != null) ?
-            //<View><Text>{props.errorMsg}</Text></View> :
             <View style={[styles.container, styles.boxShadow]}>
 
                 <View style={styles.weatherContainer}>
@@ -53,14 +51,13 @@ import {
     
 
     
-const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height     
+const screenWidth = Dimensions.get('window').width 
     const styles = StyleSheet.create({
         container: {
             flex:4,
             flexDirection:'column',
             alignItems:'center',
-            marginTop:80,
+            marginTop:60,
             backgroundColor: '#FFFFFF',
             opacity:0.9,
             borderRadius:12, 
@@ -81,24 +78,30 @@ const screenHeight = Dimensions.get('window').height
 
         weatherContainer:{
             flex:1,
+            flexShrink:1,
             flexDirection:'row',
             justifyContent:'space-around',
             alignItems:'center',
             alignContent:'center',
             width: screenWidth *0.9,
             flexWrap:'wrap',
-            borderRadius:12
+            borderRadius:12,
+            paddingHorizontal:15,
         },
         weatherIcon: {
+            flex:1,
             width: 100, 
             height: 100,
             borderRadius:12
         },
         description: {
+            flex:2,
             fontFamily:'Montserrat',
             fontSize:27,
             fontWeight:'bold',
             color:'#404491',
+            textAlign:'center',
+            paddingLeft:10
         },
 
 

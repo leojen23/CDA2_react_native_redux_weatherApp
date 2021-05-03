@@ -5,13 +5,16 @@ import {fetchForecast, updateInput, fetchLocation} from '../actions/forecastActi
 import ForecastTitle from './ForecastTitle';
 import ForecastResult from './ForecastResult';
 import ForecastForm from './ForecastForm';
+
 import {
     StyleSheet,
     SafeAreaView , 
     Text, 
     View, 
     ActivityIndicator,
-    Dimensions } from 'react-native';
+    Dimensions,
+} from 'react-native';
+
 
 class Forecast extends Component {
     componentDidMount() {
@@ -22,6 +25,7 @@ class Forecast extends Component {
                (!this.props.loader) ?
                 <SafeAreaView  style={styles.container}>
                     {this.props.forecast.location && this.props.errorMsg === null?
+                   
                     <View>
                         <ForecastTitle 
                             city={this.props.forecast.location.name} 
@@ -42,37 +46,26 @@ class Forecast extends Component {
                             inputValue={this.props.inputValue} 
                         />  
                 </View> :
+                 
                 <View >
                     <Text style={[styles.errorMsg, styles.boxShadow]}>{this.props.errorMsg}</Text>
-                    <ForecastForm 
-                    style={styles.form}
-                        onChangeText= {(text) => {this.props.updateInput(text)}}
-                        onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
-                        inputValue={this.props.inputValue} 
-                    />
+                    <View style={styles.formContainer}>
+                        <ForecastForm 
+                            onChangeText= {(text) => {this.props.updateInput(text)}}
+                            onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
+                            inputValue={this.props.inputValue} 
+                        />
+                    </View>
                 </View>}
-            </SafeAreaView > :
+            </SafeAreaView >
+           :
             <View style={styles.loaderContainer} >
                 <ActivityIndicator size="large" color="#404491" />
-            </View>  
-
-                // :
-                // <SafeAreaView style={styles.container}>
-                //     {this.props.errorMsg != null ? 
-                //     <Text style={styles.errorMsg}>{this.props.errorMsg}</Text>
-                //     :
-                //     <Text style={styles.errorMsg}>Veuillez vérifier l'orthographe de la ville</Text>
-                //         }
-                //          <ForecastForm 
-                //         style={styles.form}
-                //             onChangeText= {(text) => {this.props.updateInput(text)}}
-                //             onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
-                //             inputValue={this.props.inputValue} 
-                //         />
-                // </SafeAreaView >             
+            </View>      
         )      
     }
 }
+
 const screenWidth = Dimensions.get('window').width
 const styles = StyleSheet.create({
     container: {
@@ -81,7 +74,6 @@ const styles = StyleSheet.create({
        alignItems:'center',
        paddingBottom:40,
        paddingTop:40,
-       
     },
     loaderContainer: {
         alignSelf:'center',
@@ -107,6 +99,9 @@ const styles = StyleSheet.create({
         opacity: 0.9,
         elevation:5
     },
+    formContainer:{
+        height:125
+    },
     boxShadow:{
         shadowColor: "#00000029",
         shadowOffset: {
@@ -124,7 +119,6 @@ const mapStateToProps = (state) => ({
     inputValue: state.inputValue,
     loader: state.loader,
     errorMsg: state.errorMsg
-    //errorMsg:state.errorMsg  
   })
 
 const mapDispatchToProps = (dispatch) => {

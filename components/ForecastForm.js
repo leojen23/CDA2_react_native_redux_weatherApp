@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { 
     View, 
     Image, 
@@ -10,6 +11,7 @@ import {
 const ForecastForm = ({inputValue, onChangeText, onSubmitEditing}) => {
    
         return (
+            
             <View style={[styles.container, styles.boxShadow]}>
                 <Image
                     source={require('../assets/images/search_icon.png')} 

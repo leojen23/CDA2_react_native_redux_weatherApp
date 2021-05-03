@@ -19,8 +19,6 @@ const ForecastTitle = ({city, date}) =>
 
 
 const screenWidth = Dimensions.get('window').width
-const screenHeight = Dimensions.get('window').height        
-
 const styles = StyleSheet.create({
     container:{
         flex:1,
