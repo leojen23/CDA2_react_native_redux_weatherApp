@@ -5,6 +5,7 @@
     "name": "weather_forecast",
     "slug": "weather_forecast",
     "version": "1.0.0",
+    "android":{"softwareKeyboardLayoutMode": "pan"},
     "assetBundlePatterns": [
       "**/*"
     ]
