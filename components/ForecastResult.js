@@ -57,7 +57,7 @@ const screenWidth = Dimensions.get('window').width
             flex:4,
             flexDirection:'column',
             alignItems:'center',
-            marginTop:60,
+            marginTop:70,
             backgroundColor: '#FFFFFF',
             opacity:0.9,
             borderRadius:12, 

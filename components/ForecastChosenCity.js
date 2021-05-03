@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     city: {
         color: '#FFFFFF',
         fontWeight: 'bold',
-        fontSize: 60,
+        fontSize: 55,
         fontFamily: 'Montserrat',
         textAlign:'center',
         marginBottom:3,
