@@ -18,9 +18,9 @@ const ForecastForm = ({inputValue, onChangeText, onSubmitEditing}) => {
                     style={styles.icon}
                 />
                 <TextInput 
+                    style={styles.input}
                     onChangeText={onChangeText}
                     onSubmitEditing={onSubmitEditing}
-                    style={{ fontFamily: 'Montserrat', fontSize: 20 }}
                     placeholder="Rechercher une ville"
                     underlineColorAndroid="transparent"
                     value={inputValue}
@@ -32,24 +32,30 @@ const ForecastForm = ({inputValue, onChangeText, onSubmitEditing}) => {
 const screenWidth = Dimensions.get('window').width 
 const styles = StyleSheet.create({
     container:{
-        flex:1,
+        flex:0.5,
         width:screenWidth * 0.9,
         backgroundColor:'#FFFFFF',
         borderRadius:12,
         flexDirection:'row',
-        justifyContent:'space-evenly',
+        justifyContent:'space-around',
         alignItems:'center',
         height: 200,
         marginTop: 50,
-        fontFamily: 'Montserrat'
+        fontFamily: 'Montserrat',
+        padding:20
+    },
+    input:{
+        marginLeft:15,
+        flex:3,
+        fontFamily:'Montserrat',
+        fontSize:20
     },
     icon: {
+        flex:0.4,
         padding: 10,
         margin: 5,
         height: 50,
-        width: 50,
-        resizeMode: 'stretch',
-        alignItems: 'center',
+        width: 50
     },
     boxShadow:{
         shadowColor: "#00000029",
