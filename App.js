@@ -14,13 +14,13 @@ import { useFonts } from 'expo-font';
 
 
 export default function App() {
-  // const [loaded] = useFonts({
-  //   Montserrat: require('./assets/fonts/Montserrat-Black.ttf'),
-  // });
+  const [loaded] = useFonts({
+    Montserrat: require('./assets/fonts/Montserrat-Black.ttf'),
+  });
   
-  // if (!loaded) {
-  //   return null;
-  // }
+  if (!loaded) {
+    return null;
+  }
   return (
     <Provider store={store}>
        <View style={styles.container}>

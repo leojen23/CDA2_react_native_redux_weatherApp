@@ -74,8 +74,6 @@ const screenWidth = Dimensions.get('window').width
             borderRadius:12,
             height:200
         },
-
-
         weatherContainer:{
             flex:1,
             flexShrink:1,
@@ -97,7 +95,7 @@ const screenWidth = Dimensions.get('window').width
         description: {
             flex:2,
             fontFamily:'Montserrat',
-            fontSize:27,
+            fontSize:30,
             fontWeight:'bold',
             color:'#404491',
             textAlign:'center',
@@ -133,10 +131,6 @@ const screenWidth = Dimensions.get('window').width
             fontWeight: 'bold',
             fontSize:20,
         },
-
-
-
-
         infosContainer:{
             flex:0.5,
             flexDirection:'row',
