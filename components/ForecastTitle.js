@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ForecastChosenCity from './ForecastChosenCity';
 import moment from "moment"; 
 import 'moment/locale/fr'
