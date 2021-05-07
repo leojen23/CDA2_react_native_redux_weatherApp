@@ -3,14 +3,13 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import Forecast from './components/Forecast';
+import { useFonts } from 'expo-font';
 import { 
   StyleSheet,
   View, 
   ImageBackground
  } from 'react-native';
 
-import * as Font from 'expo-font';
-import { useFonts } from 'expo-font';
 
 
 export default function App() {

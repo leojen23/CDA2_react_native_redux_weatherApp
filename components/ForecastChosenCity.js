@@ -13,7 +13,6 @@ const ForecastChosenCity = ({city}) =>
         </View>
     )
 
-
 const styles = StyleSheet.create({
     city: {
         color: '#FFFFFF',

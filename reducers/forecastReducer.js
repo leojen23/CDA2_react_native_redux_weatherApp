@@ -1,17 +1,16 @@
-let initialState = {
+let INITIAL_STATE = {
     forecast: {},
     loader: false,
     inputValue : '',
     errorMsg:null
   }
 
-const forecastReducer = (state = initialState, action) => {
+const forecastReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
       case 'UPDATE_FORECAST':
           return {
             ...state,
             forecast: action.forecast,
-            // inputValue : '',
           };
       case 'TOGGLE_LOADER':
           return {
@@ -32,7 +31,6 @@ const forecastReducer = (state = initialState, action) => {
         return {
           ...state,
           inputValue: action.inputValue,
-          //inputValue: null
         };
       default :
           return state;

@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Montserrat',
         textAlign:'center'
-        
     }
 })
 export default ForecastTitle;

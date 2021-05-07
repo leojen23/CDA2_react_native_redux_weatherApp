@@ -10,9 +10,9 @@ import {
     const ForecastResult = (props) => {
        
         return (
-            <View style={[styles.container, styles.boxShadow]}>
+            <View style={[styles.container, styles.boxShadow, styles.stdWidth]}>
 
-                <View style={styles.weatherContainer}>
+                <View style={[styles.weatherContainer, styles.stdWidth]}>
                     <Image 
                         source={{uri: props.weatherIcon}}
                         style={styles.weatherIcon}
@@ -21,7 +21,7 @@ import {
                 </View>
     
     
-                <View style={styles.tempContainer}>
+                <View style={[styles.tempContainer, styles.stdWidth]}>
                     <Text style={styles.temp}>{props.temperature}°C</Text>
                     <View style={styles.minMaxContainer}>
                         <Text style={styles.minMaxTemp}>min {props.minTemp}°C</Text>
@@ -49,10 +49,12 @@ import {
         )
     }
     
-
     
 const screenWidth = Dimensions.get('window').width 
     const styles = StyleSheet.create({
+        stdWidth: {
+            width:screenWidth * 0.9,
+        },
         container: {
             flex:4,
             flexDirection:'column',
@@ -61,18 +63,6 @@ const screenWidth = Dimensions.get('window').width
             backgroundColor: '#FFFFFF',
             opacity:0.9,
             borderRadius:12, 
-            width: screenWidth * 0.9,
-        },
-        loaderContainer:{
-            flexDirection:'row',
-            alignContent:'center',
-            justifyContent:'center',
-            position: 'relative',
-            marginTop:80,
-            backgroundColor: '#FFFFFF',
-            opacity:0.9,
-            borderRadius:12,
-            height:200
         },
         weatherContainer:{
             flex:1,
@@ -81,7 +71,6 @@ const screenWidth = Dimensions.get('window').width
             justifyContent:'space-around',
             alignItems:'center',
             alignContent:'center',
-            width: screenWidth *0.9,
             flexWrap:'wrap',
             borderRadius:12,
             paddingHorizontal:15,
@@ -101,15 +90,12 @@ const screenWidth = Dimensions.get('window').width
             textAlign:'center',
             paddingLeft:10
         },
-
-
         tempContainer:{
             flex:1,
             flexDirection:'row',
             justifyContent:'space-around',
             alignItems:'center',
             alignContent:'center',
-            width: screenWidth *0.9,
         },
         temp: {
             fontFamily:'Montserrat',

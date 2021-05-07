@@ -5,7 +5,6 @@ import {fetchForecast, updateInput, fetchLocation} from '../actions/forecastActi
 import ForecastTitle from './ForecastTitle';
 import ForecastResult from './ForecastResult';
 import ForecastForm from './ForecastForm';
-
 import {
     StyleSheet,
     SafeAreaView , 
@@ -23,7 +22,7 @@ class Forecast extends Component {
     render(){
         return (
                (!this.props.loader) ?
-                <SafeAreaView  style={styles.container}>
+                <SafeAreaView  style={[styles.container, styles.center]}>
                     {this.props.forecast.location && this.props.errorMsg === null?
                    
                     <View>
@@ -57,29 +56,30 @@ class Forecast extends Component {
                         />
                     </View>
                 </View>}
+
             </SafeAreaView >
            :
-            <View style={styles.loaderContainer} >
+            <SafeAreaView style={[styles.loaderContainer, styles.center]} >
                 <ActivityIndicator size="large" color="#404491" />
-            </View>      
+            </SafeAreaView>      
         )      
     }
 }
 
 const screenWidth = Dimensions.get('window').width
 const styles = StyleSheet.create({
+    center:{
+        justifyContent:'center',
+        alignItems:'center',
+    },
     container: {
        flex:1,
-       justifyContent:'center',
-       alignItems:'center',
        paddingBottom:40,
        paddingTop:40,
     },
     loaderContainer: {
         alignSelf:'center',
         backgroundColor:'#FFFFFF',
-        justifyContent:'center',
-        alignItems:'center',
         width:100,
         height:100,
         opacity: 0.9,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         elevation:5
     },
     formContainer:{
-        height:125
+        height:170
     },
     boxShadow:{
         shadowColor: "#00000029",
