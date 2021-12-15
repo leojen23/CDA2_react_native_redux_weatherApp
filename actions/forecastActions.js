@@ -23,7 +23,9 @@ export const fetchLocation = () => {
         dispatch(toggleLoader(true));
         const response = await fetch ('https://api.bigdatacloud.net/data/reverse-geocode-client?city&localityLanguage=fr');
         const location = await response.json();
-        dispatch(fetchForecast(location.locality));
+        const city = location.locality
+        const cityParsed = city.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        dispatch(fetchForecast(cityParsed));
     }
 }
 export const fetchForecast = (city) => {

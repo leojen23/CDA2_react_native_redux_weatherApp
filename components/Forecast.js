@@ -5,17 +5,11 @@ import {fetchForecast, updateInput, fetchLocation} from '../actions/forecastActi
 import ForecastTitle from './ForecastTitle';
 import ForecastResult from './ForecastResult';
 import ForecastForm from './ForecastForm';
-import {
-    StyleSheet,
-    SafeAreaView , 
-    Text, 
-    View, 
-    ActivityIndicator,
-    Dimensions,
-} from 'react-native';
+import {StyleSheet,SafeAreaView , Text, View, ActivityIndicator,Dimensions,} from 'react-native';
 
 
 class Forecast extends Component {
+
     componentDidMount() {
         this.props.fetchLocation()
     }
@@ -44,19 +38,18 @@ class Forecast extends Component {
                             onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
                             inputValue={this.props.inputValue} 
                         />  
-                </View> :
-                 
-                <View >
+                    </View> :
+                    
+                    <View >
                     <Text style={[styles.errorMsg, styles.boxShadow]}>{this.props.errorMsg}</Text>
-                    <View style={styles.formContainer}>
-                        <ForecastForm 
-                            onChangeText= {(text) => {this.props.updateInput(text)}}
-                            onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
-                            inputValue={this.props.inputValue} 
-                        />
-                    </View>
-                </View>}
-
+                        <View style={styles.formContainer}>
+                            <ForecastForm 
+                                onChangeText= {(text) => {this.props.updateInput(text)}}
+                                onSubmitEditing={(event) => this.props.fetchForecast(event.nativeEvent.text)}
+                                inputValue={this.props.inputValue} 
+                            />
+                        </View>
+                    </View>}
             </SafeAreaView >
            :
             <SafeAreaView style={[styles.loaderContainer, styles.center]} >
